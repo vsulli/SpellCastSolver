@@ -24,8 +24,8 @@ from trie import *
 
 from collections import defaultdict
 from collections import OrderedDict
-from pytesseract import Output
-from imutils import contours
+# from pytesseract import Output
+# from imutils import contours
 
 
 def read_in_dict(filename, word_list):
@@ -34,10 +34,12 @@ def read_in_dict(filename, word_list):
         lines = [line.strip() for line in f]
     return lines
 
+
 test = input('')
 print(test)
 
 def main():
+    
     user_input = 0
     # read in the valid words to a list
     word_list = []

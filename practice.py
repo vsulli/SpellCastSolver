@@ -24,11 +24,17 @@ def navigate_board():
     user_points += 10
 
 
-def main():
+def test():
     print(user_points)
     navigate_board()
     print(user_points)
 
+def main():
+    user_input = input("What is your name?")
+    print(user_input)
 
-set_vars()
+
+
+# set_vars()
+# test()
 main()
