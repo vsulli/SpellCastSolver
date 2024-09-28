@@ -1,5 +1,17 @@
 # SPELLCAST SOLVER
 
+
+
+# Project Overview
+
+- inserts all the words in the dictionary into trie and prints to console
+- shows to the screen a b&w image of the curretn board in discord
+- cuts out 26 block images as jpg for character recognition
+- prints to the console what blocks were recognized as and whether it detected 2x, DL, gem or TL
+- prints to the console a representation of the board with their indices and letter as recognized with computer vision
+
+
+
 * computer vision - recognize playing area
 * recognize the squares
 
@@ -253,3 +265,6 @@ THINGS TO FIX:
 
 
 * naming cropped images incorrectly for indices 11-15
+
+
+* have to use python 3.11.4 with conda to use cv2
