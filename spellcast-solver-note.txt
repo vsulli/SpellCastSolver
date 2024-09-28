@@ -1,0 +1,50 @@
+DISCORD - SPELLCAST SOLVER
+TODO LIST: 
+
+* exit trie early 
+* add summary print for insertion of words & trie of words
+* add gems to user
+
+* give option of clicking shuffle?
+
+
+- navigate board with pyautogui
+- fix DL recognition
+- add an escape to trie - return best so far
+- go back to actually get TL if it exists
+- error handling & refactoring
+(after finished, write project synopsis & overview)
+- maybe add function to get positions of letters by letting user click
+
+
+
+working for current saved board
+* get working for any board - change it to get 
+screenshot of board again instead of loading from file
+
+* make a function that user can call to re-read board
+
+* function to move mouse and select word
+with most points
+(also add points & gems to user total)
+
+* full menu / main gameplay loop
+global user_points, user_gems
+1) get current image of board
+2) correct board 
+3) find best word
+3) quit
+
+
+- start (take image of screen, 
+do all pre-processing of image
+cv, allow corrections)
+
+* create correction function - to correct gems, dl/tl, 2x
+- need a way to check image of current board against
+
+* refactor code 
+- fixing letter recognition for "difficult" - W, M, U, V, I/T, O/Q
+- split into several files for image processing, board creation, 
+main gameplay 
+- error handling
