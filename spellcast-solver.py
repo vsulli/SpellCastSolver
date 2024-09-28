@@ -35,11 +35,7 @@ def read_in_dict(filename, word_list):
     return lines
 
 
-test = input('')
-print(test)
-
 def main():
-    
     user_input = 0
     # read in the valid words to a list
     word_list = []
@@ -102,8 +98,9 @@ def main():
                     print(" ".join(row))
                     
                 print("------------------------------------------\n")
-            case "4": 
-                input = "Would you like to add(1) or remove words(2) from the dictionary?\n"
+            case "5": 
+                # TODO
+                user_input = input("Would you like to add(1) or remove words(2) from the dictionary?\n")
                 # add new words to dictionary
                 
                 # remove words from dictionary

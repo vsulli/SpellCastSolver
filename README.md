@@ -267,4 +267,5 @@ THINGS TO FIX:
 * naming cropped images incorrectly for indices 11-15
 
 
-* have to use python 3.11.4 with conda to use cv2
+* have to use conda to use cv2
+* TODO need to finish 5 - update dictionary

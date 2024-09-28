@@ -2,8 +2,7 @@
 # TODO change it to stop searching for words once at least 1 word is found 
 # that is 50+ points? after amt time?
 # TODO need to modify code to work with dict list
-# TODO modify code to calculate DL and 2X as well
-# TODO modify code to return only top 5 most point words?
+# TODO fix it to calculate TL correctly
 
 import collections
 
