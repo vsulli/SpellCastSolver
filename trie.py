@@ -1,6 +1,6 @@
 # TODO need to go through algorithm line by line
 # TODO change it to stop searching for words once at least 1 word is found 
-# that is 50+ points? after amt time?
+# that is 50+ points? after amt time? - currently slow
 # TODO need to modify code to work with dict list
 # TODO fix it to calculate TL correctly
 
@@ -9,7 +9,7 @@ import collections
 # dictionary to store index: letter, 2x, DL, gem, TL
 letter_images = {}
 
-# need it to be valid so you can sleect any indices you want
+# need it to be valid so you can select any indices you want
 valid_words = {}
 
 letter_positions = {1:[-610, 449], 2:[-566, 449], 3:[-522, 449], 4:[-478, 449], 5:[-434, 449], 
@@ -49,6 +49,7 @@ class Trie:
                 node.children[char] = TrieNode()
             node = node.children[char]
         node.is_end_of_word = True
+        # can increase this number to print out fewer words
         if i % 1000 == 0:
             print(f"Inserted word: {word}")
         i+=1
@@ -83,8 +84,7 @@ def find_words(board, dictionary, trie, game_board):
             bool_2x = 0
             tot_val = 0
             points = 0
-            # TODO - need to calculate total value by looping through path
-            # and retrieving values from letter_values?
+
             for num in path:
                 letter = game_board.get(num)[0]
                 points = letter_values.get(letter)
