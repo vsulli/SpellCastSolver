@@ -34,8 +34,10 @@ def read_in_dict(filename, word_list):
         lines = [line.strip() for line in f]
     return lines
 
-def main():
+test = input('')
+print(test)
 
+def main():
     user_input = 0
     # read in the valid words to a list
     word_list = []
@@ -50,14 +52,13 @@ def main():
     
     while user_input != 5:
         # new gameplay loop
-        print("Please make a selection:\n" + 
+        user_input = input("Please make a selection:\n" + 
                         "1) Get Current Board\n" + 
                         "2) Correct Board\n" +
                         "3) Find Best Word\n" +
                         "4) Print Current Board\n" +
                         "5) Update Dictionary\n" +
                         "6) Quit\n")
-        user_input = input()
         match user_input:
             case "1":
                 # process image
