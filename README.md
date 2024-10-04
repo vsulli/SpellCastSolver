@@ -209,34 +209,6 @@ print("\nFound Words and Their Paths:")
 for word, path in result.items():
     print(word, path)
 
-
-##  differences 
-
-     dfs(new_x, new_y, prefix + board[x][y], path + [(5*x) + y + 1], visited)  # Convert (x, y) to a number
-        visited.remove((x, y))
-
-
-    if not (0 <= x < len(board)) or not (0 <= y < len(board[0])) or (x, y) in visited:
-
-
-    * Need to add a check before adding to the prefix - where if the resulting combination of letters does not exist in the dictionary, it will stop going down that path 
-
-
-
-    Improving Readability by separating out functions into files
-
-    board-actions.py
-    - read in board
-    - display board
-    - update/correct board
-
-    * change file location for where board is read from
-
-    ** Need to go back to reading live image of discord spellcast & saving new image of board
-    
-
-    # testing the difference in thresholds / white percentages for TL vs DL crop
-
 ## TL, DL and Gem Detection 
 **TL**
 

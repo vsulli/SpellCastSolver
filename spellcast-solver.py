@@ -130,6 +130,5 @@ def main():
             case _:
                 print("Invalid input. Please select from the options above.")
             
-            
 main()
 
