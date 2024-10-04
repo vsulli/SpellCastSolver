@@ -122,9 +122,7 @@ direction vectors (-1, 0), (0, 1), (1, 0), (0, -1)
 left, down, right, up
 * as y increases, it goes down the page and as y decreases it goes up the page
 
-         [x, y-1]
-[x-1,y]  [x,y]     [x+1, y]
-         [x, y+1]
+![Direction Vector Image](direction_vectors.PNG)
 
 ## Trie Data Structure
 [Geeks for Geeks Trie Data Structure](https://www.geeksforgeeks.org/advantages-trie-data-structure/)
