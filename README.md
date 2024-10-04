@@ -16,6 +16,7 @@
 # CHANGES
 - option to try new ocr on a single row, single column or single square?
 - to optimize removal/insertion of words to text dictionary file, binary search?
+- how to handle adding words that already appear in the dictionary?
 
 * computer vision - recognize playing area
 * recognize the squares
@@ -273,4 +274,5 @@ THINGS TO FIX:
 
 
 * have to use conda to use cv2
-* TODO need to finish 5 - update dictionary
+
+* bisect insort assumes the list is already sorted

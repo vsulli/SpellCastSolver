@@ -107,7 +107,8 @@ def main():
                     match user_input2:
                         # add new words to dictionary
                         case "1":
-                            pass
+                            word = input("Type the word to remove from the dictionary: ")
+                            addWord(word)
                             break
                         # remove words from dictionary
                         case "2":

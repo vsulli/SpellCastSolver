@@ -6,7 +6,6 @@ import string
 def removeWord(word):
     word = word.lower()
 
-    # skip lines to be removed
     with open("collins.txt", 'r+') as file:
         inDictionary = False
         lines = file.readlines()
@@ -19,6 +18,7 @@ def removeWord(word):
             # each word has newline character
             if line != word + "\n":
                 file.write(line)
+            # skip lines to be removed
             elif line == word + "\n":
                 inDictionary = True
         print("Word Removed: " + word + "\n") if inDictionary else print("Word does not appear.\n")
@@ -27,7 +27,7 @@ def removeWord(word):
 
 
 def addWord(word):
-    with open("test_dict.txt", 'r+') as file:
+    with open("collins.txt", 'r+') as file:
         word_list= file.readlines()
         bisect.insort(word_list, word.lower()+"\n")
         file.seek(0)
@@ -36,7 +36,3 @@ def addWord(word):
         print("Word Added: " + word)
 
     file.close()
-
-
-# removeWord("RUn")
-addWord("doggy")
