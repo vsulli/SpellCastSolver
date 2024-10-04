@@ -5,7 +5,7 @@ def removeWord(word):
     word = word.lower()
 
     # skip lines to be removed
-    with open("test_dict.txt", 'r+') as file:
+    with open("collins.txt", 'r+') as file:
         inDictionary = False
         lines = file.readlines()
         # move to beginning of file
@@ -19,7 +19,7 @@ def removeWord(word):
                 file.write(line)
             elif line == word + "\n":
                 inDictionary = True
-        print("Word Removed: " + word) if inDictionary else print("Word does not appear.")
+        print("Word Removed: " + word + "\n") if inDictionary else print("Word does not appear.\n")
         
         file.close()
 
@@ -28,4 +28,4 @@ def addWord(my_dictionary, word):
     pass
 
 
-removeWord("RUn")
+# removeWord("RUn")

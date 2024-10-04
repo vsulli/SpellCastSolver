@@ -101,16 +101,23 @@ def main():
                 print("------------------------------------------\n")
             case "5": 
                 user_input2 = -1
-                while user_input2 != 1 or 2:
+                while user_input2 != "1" or user_input2 != "2":
                 # TODO
                     user_input2 = input("Would you like to add(1) or remove words(2) from the dictionary?\n")
-                # add new words to dictionary
-                if user_input2 == 1:
-
-                # remove words from dictionary
-                else:
-
-
+                    match user_input2:
+                        # add new words to dictionary
+                        case "1":
+                            pass
+                            break
+                        # remove words from dictionary
+                        case "2":
+                            word = input("Type the word to remove from the dictionary: ")
+                            removeWord(word)
+                            break
+                        case _:
+                            print("Invalid input.")
+                            
+                
             # TODO add option to change default locations of letters
             case "6": 
                 return

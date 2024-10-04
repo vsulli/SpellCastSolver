@@ -15,6 +15,7 @@
 
 # CHANGES
 - option to try new ocr on a single row, single column or single square?
+- to optimize removal/insertion of words to text dictionary file, binary search?
 
 * computer vision - recognize playing area
 * recognize the squares
