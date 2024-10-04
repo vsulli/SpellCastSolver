@@ -19,6 +19,7 @@ import pytesseract
 # my files to import
 from board import *
 import config
+from dictionary import *
 from imageprocessing import *
 from trie import *
 
@@ -99,11 +100,18 @@ def main():
                     
                 print("------------------------------------------\n")
             case "5": 
+                user_input2 = -1
+                while user_input2 != 1 or 2:
                 # TODO
-                user_input = input("Would you like to add(1) or remove words(2) from the dictionary?\n")
+                    user_input2 = input("Would you like to add(1) or remove words(2) from the dictionary?\n")
                 # add new words to dictionary
-                
+                if user_input2 == 1:
+
                 # remove words from dictionary
+                else:
+
+
+            # TODO add option to change default locations of letters
             case "6": 
                 return
             

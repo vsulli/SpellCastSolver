@@ -11,6 +11,10 @@
 - prints to the console a representation of the board with their indices and letter as recognized with computer vision
 
 
+# TODO LIST
+
+# CHANGES
+- option to try new ocr on a single row, single column or single square?
 
 * computer vision - recognize playing area
 * recognize the squares

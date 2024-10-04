@@ -13,5 +13,4 @@ out
 outgo
 outgoes
 pun
-run
 sitters
