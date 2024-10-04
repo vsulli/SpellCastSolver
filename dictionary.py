@@ -1,5 +1,7 @@
 # functions to update words in the "dictionary" - collins.txt
+import bisect
 import string
+
 
 def removeWord(word):
     word = word.lower()
@@ -24,8 +26,17 @@ def removeWord(word):
         file.close()
 
 
-def addWord(my_dictionary, word):
-    pass
+def addWord(word):
+    with open("test_dict.txt", 'r+') as file:
+        word_list= file.readlines()
+        bisect.insort(word_list, word.lower()+"\n")
+        file.seek(0)
+        file.truncate()
+        file.writelines(word_list[:])
+        print("Word Added: " + word)
+
+    file.close()
 
 
 # removeWord("RUn")
+addWord("doggy")
