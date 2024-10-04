@@ -1,7 +1,5 @@
-# TODO need to go through algorithm line by line
 # TODO change it to stop searching for words once at least 1 word is found 
 # that is 50+ points? after amt time? - currently slow
-# TODO need to modify code to work with dict list
 # TODO fix it to calculate TL correctly
 
 import collections
@@ -28,7 +26,7 @@ def add_dict():
     valid_dict = []
     with open("collins.txt") as f:
         for line in f:
-            # need to strip newline character?
+            # need to strip newline character
             valid_dict.append(line.strip())
     return valid_dict
 
@@ -147,7 +145,6 @@ def search_algo(board, dictionary, trie, game_board):
     print("\nTop 5 Words")
     print("------------------------------------------")
     # sort all words and paths by points
-    # oes [[12, 15, 2], 12]
     sorted_result = sorted(result.items(), key=lambda item: item[1][1], reverse=True)
 
     top_5_w = []

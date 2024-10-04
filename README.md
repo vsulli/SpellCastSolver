@@ -1,45 +1,85 @@
 # SPELLCAST SOLVER
 
+A program that uses computer vision to take images of the Discord game SpellCast, calculate the words with most points, and select the desired word using pyautogui.
 
+# PROJECT OVERVIEW
 
-# Project Overview
-
-- inserts all the words in the dictionary into trie and prints to console
-- shows to the screen a b&w image of the curretn board in discord
-- cuts out 26 block images as jpg for character recognition
-- prints to the console what blocks were recognized as and whether it detected 2x, DL, gem or TL
-- prints to the console a representation of the board with their indices and letter as recognized with computer vision
-
+- Inserts all the words in the dictionary into trie and prints to console
+- Shows a b&w image of the current board in discord on the screen
+- Cuts out 26 block images as .jpg images for character recognition
+- Prints to the console what blocks were recognized as and whether it detected 2x, DL, or gem
+- Prints to the console a representation of the board with their indices and letter as recognized with computer vision
+- Menu Options: 
+    - Taking a screenshot of the new board and detecting letters
+    - Correcting any of the states of a tile (letter, gem, DL, TL, 2x)
+    - Calculating the top 5 words by point value
+    - Adding & removing words from dictionary text document
 
 # TODO LIST
 
+- Error handling for preventing the addition of duplicate words to the dictionary
+
+- Add function to select and save coordinates for the corners of the game board
+    - I currently have stored values based on the resolution of my second monitor. Using pyautogui I could adapt it to work on any monitor by calculating the relative positions of each tile
+
 # CHANGES
-- option to try new ocr on a single row, single column or single square?
-- to optimize removal/insertion of words to text dictionary file, binary search?
-- how to handle adding words that already appear in the dictionary?
 
-* computer vision - recognize playing area
-* recognize the squares
+* If I were to start this project over, given what I've learned during its completion, I would implement some of these changes. 
 
-* dictionary with values of letters and the letter
-{A: 1, B: 4, C: 5, D: 3, E: 1, F: 5, G: 3, H: 4, I: 1, J: 7, K: 6, L: 3, M: 4, N: 2, O: 1, P: 4, Q: 8, R: 2, S: 2, T: 2, U: 4, V: 5, W: 5, X: 7, Y: 4, Z: 8}
+- There are ways to train the model on custom data, so if I were to return to this project I would try to train it with custom images of multiple letter cutouts that included some of the special statuses at random.
+    - detection of TL by reading the "TL" characters
 
-* prioritize tiles with gems
+- Option to try new OCR on a single row, single column or single square of the board
 
-* how to handle if it's "almost" a word - just need to swap 1 (do that if you have at least 3 gems)
+- Improve the efficiency of removal/insertion of words to the dictionary file using binary search
 
-# Optical Character Recognition
+- JSON database for storing the dictionary of words
+
+- Currently calculating all of the possible valid words takes a lot of time, so I would probably add a condition to exit the trie if a word is found that is 50+ points or allow the user to set a time threshold anywhere from 30s to an unlimited amount of time
+
+- The current program doesn't make use of swap letter or shuffle, so that is a functionality that I could learn how to implement in the future
+
+- Different modes: automatically play the game or allow user to enter word
+
+# RESEARCH NOTES
+
+## opencv
+
+[opencv docs](https://docs.opencv.org/4.x/d9/df8/tutorial_root.html)
+
+* While computer vision did not end up having 100% accuracy in this project, the purpose was to attempt to use computer vision to bypass manual entry of each letter and status(gem, TL, DL, 2x). 
+
+**Optical Character Recognition**
 https://pyimagesearch.com/2020/08/17/ocr-with-keras-tensorflow-and-deep-learning/
 
-# ocring video streams
+**Ocring Video Streams**
 https://pyimagesearch.com/2022/03/07/ocring-video-streams/
 
-# spellcast solver - collins.txt from Oli Bomby on Github
-https://raw.githubusercontent.com/OliBomby/SpellCastSolver/master/SpellCastSolverLib/collins.txt
+* I decided to go with images of the game board over a video stream because a constant video stream would be memory intensive and what changes on the board 
+only really matters when a word is played and new characters are generated
+
+
+## pyautogui
+
+[pyautogui docs](https://pyautogui.readthedocs.io/en/latest/)
+
+## Discord - SpellCast
+
+[SpellCast Rules](https://discord.fandom.com/wiki/SpellCast)
+
+* dictionary with values of letters and the letter
+
+{A: 1, B: 4, C: 5, D: 3, E: 1, F: 5, G: 3, H: 4, I: 1, J: 7, K: 6, L: 3, M: 4, N: 2, O: 1, P: 4, Q: 8, R: 2, S: 2, T: 2, U: 4, V: 5, W: 5, X: 7, Y: 4, Z: 8}
+
+**Dictionary**
+
+[collins.txt from Oli Bomby on Github](https://raw.githubusercontent.com/OliBomby/SpellCastSolver/master/SpellCastSolverLib/collins.txt)
 
 * 279,494 total words 
+* Discord did not have an official list of the words they use in their game and I found that some English words that are considered valid in other dictionaries did not occur in SpellCast. The collins.txt list of words still includes some words that are not valid in SpellCast, but there is now an option to delete those words as they are encountered
 
-Python Tuples
+
+**Python Tuples**
 
 Ordered: They contain elements that are sequentially arranged according to their specific insertion order.
 Lightweight: They consume relatively small amounts of memory compared to other sequences like lists.
@@ -55,96 +95,47 @@ Hashable: They can work as keys in dictionaries when all the tuple items are imm
 * can access individual objects in a tuple by position or index
 
 indices start from zero
-
- record = ("John", 35, "Python Developer")
->>> record[0]
+record = ("John", 35, "Python Developer")
+record[0]
 'John'
->>> record[1]
+record[1]
 35
->>> record[2]
+record[2]
 'Python Developer'
 
+## DFS
 
-Pseudocode for traversing the board to get valid words:
+DFS > BFS for word search problems because it is more memory efficient
 
-start from source node top left
-right first (then diagonal and down)
-get letter of source node, get letter of right node
-check to see if in word_list - use binary search?
-if it is, store it in possibilities list? [word, point value] - only keep top 5?
-while valid word, keep going in that direction, if not, try all other valid directions
+[dfs and matrices](https://www.lavivienpost.com/depth-first-search-and-matrix/)
 
-https://www.lavivienpost.com/depth-first-search-and-matrix/
+[dfs on a 2D array](https://www.geeksforgeeks.org/depth-first-traversal-dfs-on-a-2d-array/)
 
-https://medium.com/@ojhasaurabh2099/traversing-a-grid-using-dfs-ac7a391f7af8
+[direction vectors and validator functions](https://medium.com/@ojhasaurabh2099/traversing-a-grid-using-dfs-ac7a391f7af8)
 
-** MEDIUM ARTICLE --> DIRECTION VECTORS & VALIDATOR FUNCTIONS
-
-
-DEPTH FIRST TRAVERSAL ON A 2D ARRAY
-
-https://www.geeksforgeeks.org/depth-first-traversal-dfs-on-a-2d-array/
+* a validator function is necessary to make sure that the generated coordinate doesn't go out of bounds
 
 * direction vectors are used to traverse the adjacent cells of a given cell in a given order
 ex) (x, y) 
 adjacent cells (x-1, y), (x, y+1), (x+1, y), (x, y-1)
-direction vectors (-1, 0), (0, 1), (1, 0), (0, -1) up, left, down, right order
+direction vectors (-1, 0), (0, 1), (1, 0), (0, -1) 
+left, down, right, up
+* as y increases, it goes down the page and as y decreases it goes up the page
 
-** Geeks for Geeks
-Example code for DFS
-https://www.geeksforgeeks.org/depth-first-traversal-dfs-on-a-2d-array/
+         [x, y-1]
+[x-1,y]  [x,y]     [x+1, y]
+         [x, y+1]
 
+## Trie Data Structure
+[Geeks for Geeks Trie Data Structure](https://www.geeksforgeeks.org/advantages-trie-data-structure/)
 
-Desired Output for Checking Grid
+Trie (also known as a prefix tree) - tree-based data structure that stores an array of sequences
 
-1-> 2 (check if valid)
-continue
-
-1->7
-1-> 6
-2-> 1
-2->3
-2->8
-2->7
-2->6
-----------------------
-13->7
-13->8
-13->9
-13->14
-13->19
-13->18
-13->17
-13->12 
-
-* possibly look into adjacency lists?
-
-BFS seems closer to what I need
-1 6 7 2 11 12 13 8 3 16 17 18 19 14 9 4 21 22 23 24 25 20 15 10 5 
-
-* way to change start? 
-since the parameters are row and column, can change start easily 
-* how do I continue a chain? linked list?
-https://www.geeksforgeeks.org/construct-linked-list-2d-matrix/
-
-* how to do this for diagonal ones?
-https://www.geeksforgeeks.org/construct-a-doubly-linked-linked-list-from-2d-matrix/ 
-
-Trie Data Structure
-https://www.geeksforgeeks.org/advantages-trie-data-structure/
-Trie (also known as tree) - tree-based data structure used to store an associative array where the keys are sequences
 advantages: fast search, space-efficient, auto-complete, efficient insertion and deletion, compact representation
 
 * maximum number of children of a node is the size of the alphabet
 
-GRID-BASED DFS ALGORITHM
-if dx == 0 and dy == 0:
-    continue
-** explore neighboring cells around the current cell 
-
-DFS > BFS for word search problem because it is more memory efficient
-
-Code to work for a 5x5 grid
+### Trie Code to Work for a 5x5 Grid
 
 class TrieNode:
     def __init__(self):
@@ -197,7 +188,7 @@ def find_words(board, dictionary):
 
     return valid_words
 
-# Example usage:
+### Example usage:
 board = [['a', 't', 'e', 'm', 'p'],
          ['s', 'r', 'n', 'o', 't'],
          ['i', 'o', 'l', 'i', 'o'],
@@ -208,17 +199,15 @@ dictionary = {"ate", "at", "tea", "sat", "in", "or", "ion", "lion"}  # Using a s
 
 result = find_words(board, dictionary)
 
-# Print the grid
+**Print the grid**
 print("Grid:")
 for row in board:
     print(" ".join(row))
 
-# Print the list of possible words and their paths
+**Print the list of possible words and their paths**
 print("\nFound Words and Their Paths:")
 for word, path in result.items():
     print(word, path)
-
-
 
 
 ##  differences 
@@ -247,32 +236,18 @@ for word, path in result.items():
     
 
     # testing the difference in thresholds / white percentages for TL vs DL crop
-# TL
+
+## TL, DL and Gem Detection 
+**TL**
+
 print(img_color_percent('block_11.jpg', 40))
 
-# DL
-print(img_color_percent('C:/Users/paro/Coding Projects/SpellCastSolver/sample_board_1 - DL, 2X/block_1.jpg', 40))
+- I was unable to consistently detect the TL symbol in the image due to the low image quality of the characters themselves and there not being much of a difference in the pixel percentages between TL and DL. 
 
+**DL**
 
-THINGS TO FIX: 
-- need to reset result list when finding words?
-- previously played words showing up in top 5 words list
+dl = img_color_percent('cropped_dl.jpg', 40)
 
+[Array bisection algorithm](https://docs.python.org/3/library/bisect.html)
 
-- option to reset points
-- option to remove word from dictionary
-- calculate gems as you pick them up or read gem section
-
-- detect TL
-- fix letter detection for similar ones (n/m, w/m, v/y, o/q, i/t)
-- different modes: automatically play game or allow user to enter word
-
-* summarize for every 1000 entries with print statements to speed up
-
-
-* naming cropped images incorrectly for indices 11-15
-
-
-* have to use conda to use cv2
-
-* bisect insort assumes the list is already sorted
+-  bisect insort assumes the list is already sorted

@@ -1,4 +1,5 @@
 # Spellcast Solver
+# vsulli
 # 14 January 2024
 # Program to automatically find the 
 # word with the most amount of points 
@@ -64,11 +65,12 @@ def main():
                 format_board_image()
                 # read letters and store in dict
                 read_image(config.game_board)
+
             case "2": 
                 # correct letters, gems, DL, 2X status
                 correct_board(config.game_board)
+
             case "3": 
-                # need to convert the game_board to list of lists
                 board_list = convert_game_board(config.game_board)
 
                 # gets top 5 words
@@ -97,8 +99,8 @@ def main():
                 board_list = convert_game_board(config.game_board)
                 for row in board_list:
                     print(" ".join(row))
-                    
                 print("------------------------------------------\n")
+
             case "5": 
                 user_input2 = -1
                 while user_input2 != "1" or user_input2 != "2":
@@ -119,7 +121,8 @@ def main():
                             print("Invalid input.")
                             
                 
-            # TODO add option to change default locations of letters
+            # TODO add option to change default coordinates of letters
+
             case "6": 
                 return
             
@@ -127,6 +130,6 @@ def main():
             case _:
                 print("Invalid input. Please select from the options above.")
             
-
+            
 main()
 

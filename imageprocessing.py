@@ -163,7 +163,7 @@ def read_image(game_board):
         dl = img_color_percent('cropped_dl.jpg', 40)
 
         #TODO add check for TL by getting a crop of corner
-        # how to comapre to DL? 
+        # how to compare to DL? 
 
         # check gem - bottom left corner
         box = (5,21,12,33)
